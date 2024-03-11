@@ -5,11 +5,14 @@ public class Book {
     private String genre;
     private int publicationYear;
 
+    private boolean availabiility;
+
     public Book(String title, String author, String genre, int publicationYear){
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publicationYear = publicationYear;
+        this.availabiility = true;
     }
 
     public String getTitle(){
