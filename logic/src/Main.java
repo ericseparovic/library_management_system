@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -18,6 +19,9 @@ public class Main {
                   case 1:
                       addBook(library, scanner);
                   break;
+                   case 2:
+                       searchBookByTitle(library, scanner);
+                   break;
                    case 0:
                        run = false;
                    break;
@@ -28,14 +32,29 @@ public class Main {
                System.out.println("Invalid Choice!");
                scanner.nextLine();
            }
-
-
-
        }
-       
-        
-        
-       
+    }
+
+
+    public static void displayBooks(List<Book> books){
+        for (Book book : books){
+            System.out.println("Title; " + book.getTitle());
+            System.out.println("Author; " + book.getAuthor());
+            System.out.println("Genre; " + book.getGenre());
+            System.out.println("Publication Year; " + book.getPublicationYear());
+        }
+    }
+
+    public static void searchBookByTitle(Library library, Scanner scanner){
+        System.out.println("Enter title");
+        String title = scanner.nextLine();
+        List<Book> machingBooks =  library.searchBookByTitle(title);
+
+        if(machingBooks.isEmpty()){
+            System.out.println("No results were found");
+        } else {
+            displayBooks(machingBooks);
+        }
     }
 
     public static void addBook(Library library, Scanner scanner){
@@ -87,10 +106,6 @@ public class Main {
 
         Book book = new Book(title, author, genre, publicationYear);
         library.addBook(book);
-        
-       
-;
-library.addBook(book);
     }
 
     public static int displayMenu(Scanner scanner){
